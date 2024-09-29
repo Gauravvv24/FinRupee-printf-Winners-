@@ -114,8 +114,6 @@ streamlit_folium
 numerize
 web3
 ccxt
-xgboost
-langchain
 langchain_google_genai
 PyPDF2
 gtts
