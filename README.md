@@ -1,4 +1,5 @@
-# FinRupee
+# ![logo](https://github.com/user-attachments/assets/99359293-086e-4cde-a7ac-03e67ad2f222)
+# FinRupee 
 
 **FinRupee** is an innovative financial management platform designed to simplify and enhance the investment experience for both individuals and institutions. By integrating advanced technologies such as AI, machine learning, and real-time data, FinRupee provides users with insights, secure transactions, and comprehensive analytics.
 
