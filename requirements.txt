@@ -117,3 +117,4 @@ ccxt
 langchain_google_genai
 PyPDF2
 gtts
+langchain
