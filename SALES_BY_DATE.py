@@ -116,7 +116,7 @@ def sales():
             st.altair_chart(bar_chart, use_container_width=True, theme=None)
 
         # Sidebar logo image
-        st.sidebar.image("data/logo1.png")
+        # st.sidebar.image("data/logo1.png")
 
 
 # Call the sales function
