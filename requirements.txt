@@ -123,3 +123,4 @@ langchain_community
 statsmodels
 seaborn
 streamlit_option_menu
+openpyxl
