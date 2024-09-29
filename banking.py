@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import random
 
-# ============================
-# Initialize Session State
-# ============================
-
 def initialize_session_state():
     if 'banks' not in st.session_state:
         st.session_state['banks'] = {}
@@ -16,11 +12,10 @@ def initialize_session_state():
     if 'selected_option' not in st.session_state:
         st.session_state['selected_option'] = None
 
-    # Populate with fake data if no banks exist
     if not st.session_state['banks']:
         add_fake_bank("Bank A")
         add_fake_bank("Bank B")
-        st.session_state['current_bank'] = "Bank A"  # Set default current bank
+        st.session_state['current_bank'] = "Bank A"  
 
 def add_fake_bank(bank_name):
     st.session_state['banks'][bank_name] = {
@@ -69,9 +64,6 @@ def generate_fake_transactions():
         })
     return transactions
 
-# ============================
-# Sidebar Components
-# ============================
 
 def sidebar():
     st.sidebar.title("Banking Dashboard")
@@ -91,9 +83,6 @@ def sidebar():
     if option != "Select an Option":
         st.session_state['selected_option'] = option
 
-# ============================
-# Main Dashboard
-# ============================
 
 def display_account_stats():
     bank = st.session_state['current_bank']
@@ -176,10 +165,6 @@ def display_upis_cards():
     else:
         st.write("No cards added.")
 
-# ============================
-# Sidebar Option Functionalities
-# ============================
-
 def add_upi_id():
     st.header("Add UPI ID")
     with st.form(key='add_upi_form'):
@@ -249,10 +234,6 @@ def monthly_stats():
     st.header("Monthly Statistics")
     display_transaction_graphs()
 
-# ============================
-# Payment Functionality
-# ============================
-
 def send_money():
     st.header("Send Money")
     bank = st.session_state['current_bank']
@@ -263,11 +244,9 @@ def send_money():
         amount = st.number_input("Amount (₹)", min_value=1.0, step=1.0)
         mode = st.selectbox("Mode of Payment", ["Select Mode", "UPI", "Card"])
 
-        # Initialize selected_upi and selected_card as None
         selected_upi = None
         selected_card = None
 
-        # Conditional selection based on mode
         if mode == "UPI":
             if not bank_data['upi_ids']:
                 st.error("Please add a UPI ID first and then send money.")
@@ -279,7 +258,6 @@ def send_money():
             else:
                 selected_card = st.selectbox("Select Card", options=[f"**** **** **** {card['last4']}" for card in bank_data['cards']])
 
-        # Placeholder for PIN/CVV
         if mode == "UPI" and bank_data['upi_ids']:
             pin = st.text_input("Enter UPI PIN", type='password')
         elif mode == "Card" and bank_data['cards']:
@@ -288,22 +266,15 @@ def send_money():
         submit_payment = st.form_submit_button("Confirm Payment")
 
         if submit_payment:
-            # Validate Mode Selection
             if mode not in ["UPI", "Card"]:
                 st.error("Please select a valid mode of payment.")
                 st.stop()
-
-            # Validate Receiver Input
             if not receiver:
                 st.error("Please enter the receiver's UPI ID or Card Number.")
                 st.stop()
-
-            # Validate Amount
             if amount <= 0:
                 st.error("Please enter a valid amount greater than 0.")
                 st.stop()
-
-            # Validate PIN/CVV
             valid = False
             if mode == "UPI":
                 for upi in bank_data['upi_ids']:
@@ -321,10 +292,8 @@ def send_money():
                     st.error("Invalid CVV.")
 
             if valid:
-                # Deduct amount from account balance
                 if bank_data['account_balance'] >= amount:
                     bank_data['account_balance'] -= amount
-                    # Add to transaction history
                     transaction = {
                         'date': datetime.now().strftime('%Y-%m-%d'),
                         'receiver': receiver,
@@ -335,16 +304,10 @@ def send_money():
                     }
                     st.session_state['banks'][bank]['transaction_history'].append(transaction)
                     st.success("Payment successful.")
-
-                    # Optional: Clear form inputs after successful payment
-                    st.experimental_rerun()  # Refresh the page to update the balance and transaction history
+                    st.experimental_rerun() 
                 else:
                     st.error("Insufficient balance.")
 
-
-# ============================
-# Transaction Graphs
-# ============================
 
 def display_transaction_graphs():
     bank = st.session_state['current_bank']
@@ -359,7 +322,6 @@ def display_transaction_graphs():
     df['month'] = df['date'].dt.to_period('M')
     df['day'] = df['date'].dt.day
 
-    # Pie Chart: Spending by Mode
     st.subheader("Spending by Mode")
     spend_mode = df[(df['type'] == 'Sent')]['amount'].groupby(df['mode']).sum()
     fig1, ax1 = plt.subplots()
@@ -367,7 +329,6 @@ def display_transaction_graphs():
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     st.pyplot(fig1)
 
-    # Bar Chart: Daily Spending for Current Month
     st.subheader("Daily Spending in Current Month")
     current_month = datetime.now().strftime('%Y-%m')
     current_month_transactions = df[(df['type'] == 'Sent') & (df['month'].astype(str) == current_month)]
@@ -382,26 +343,17 @@ def display_transaction_graphs():
     else:
         st.write("No spending data available for the current month.")
 
-# ============================
-# Putting It All Together
-# ============================
-
 def bank():
     
     initialize_session_state()
     sidebar()
-
-    # Initial Page: Select or Add Bank
     if not st.session_state['current_bank']:
         st.info("Please select a bank to continue.")
         select_or_add_bank()
         return  # Exit main to wait for user action
-
-    # Handle Sidebar Options
     selected_option = st.session_state.get('selected_option', None)
 
     if selected_option is None:
-        # Display Account Stats and Additional Information
         display_account_stats()
         col1, col2 = st.columns(2)
         with col2:
@@ -424,12 +376,8 @@ def bank():
         elif selected_option == "Send Money":
             send_money()
 
-# Reset selected option after action
     if selected_option in ["Add UPI ID", "Add Card", "View Loans/Borrowings", "Switch/Add Bank", "Monthly Stats", "Send Money"]:
         st.session_state['selected_option'] = None
-# ============================
-# Run the App
-# ============================
 
 def select_or_add_bank():
     st.header("Select or Add Your Bank")
