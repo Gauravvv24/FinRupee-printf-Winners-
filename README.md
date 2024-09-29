@@ -2,6 +2,8 @@
 
 **FinRupee** is an innovative financial management platform designed to simplify and enhance the investment experience for both individuals and institutions. By integrating advanced technologies such as AI, machine learning, and real-time data, FinRupee provides users with insights, secure transactions, and comprehensive analytics.
 
+< https://www.canva.com/design/DAGSKyOyuxE/S-kGyBtRTNR1LSmAxNCMPQ/watch?utm_content=DAGSKyOyuxE&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel >
+
 ## Table of Contents
 
 - [Features](#features)
