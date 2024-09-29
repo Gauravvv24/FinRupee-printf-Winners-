@@ -116,3 +116,8 @@ web3
 ccxt
 xgboost
 langchain
+langchain_google_genai
+speech_recognition
+PyPDF2
+gtts
+dotenv
