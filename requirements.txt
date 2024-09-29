@@ -115,3 +115,4 @@ numerize
 web3
 ccxt
 xgboost
+langchain
