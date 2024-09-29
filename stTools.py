@@ -209,7 +209,7 @@ def create_dateframe_view(df: pd.DataFrame) -> None:
     df['pct_change'] = df['pct_change'].apply(lambda x: f'{x:,.2f}')
 
     st.dataframe(
-        df.style.map(win_highlight,
+        df.style.applymap(win_highlight,
                      subset=['daily_change', 'pct_change']),
         column_config={
             "stock_tickers": "Tickers",
