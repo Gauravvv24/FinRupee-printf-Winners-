@@ -118,3 +118,4 @@ langchain_google_genai
 PyPDF2
 gtts
 langchain
+ pydantic==1.10.9
