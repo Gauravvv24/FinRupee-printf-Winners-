@@ -121,3 +121,4 @@ langchain==0.3.1
 pydantic==2.7.4
 langchain_community
 statsmodels
+seaborn
