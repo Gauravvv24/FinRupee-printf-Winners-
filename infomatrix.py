@@ -23,20 +23,20 @@ def infomatrix():
             return base64.b64encode(image_file.read()).decode()
 
     # Convert images
-    logo_base64 = image_to_base64("images\\boblogo.jpeg")
-    illustration_base64 = image_to_base64("images\\homepage_illus.png")
-    aichatbot_base64 = image_to_base64("images\\aichatbot.png")
-    analysis_base64 = image_to_base64("images\\analysis.png")
-    compliance_base64 = image_to_base64("images\\compliance.png")
-    reportgen_base64 = image_to_base64("images\\reportgen.png")
-    insta_base64 = image_to_base64("images\\insta.png")
-    git_base64 = image_to_base64("images\\git.png")
-    linkedin_base64 = image_to_base64("images\\linkedin.png")
-    discord_base64 = image_to_base64("images\\discord.png")
+    logo_base64 = image_to_base64("images/boblogo.jpeg")
+    illustration_base64 = image_to_base64("images/homepage_illus.png")
+    aichatbot_base64 = image_to_base64("images/aichatbot.png")
+    analysis_base64 = image_to_base64("images/analysis.png")
+    compliance_base64 = image_to_base64("images/compliance.png")
+    reportgen_base64 = image_to_base64("images/reportgen.png")
+    insta_base64 = image_to_base64("images/insta.png")
+    git_base64 = image_to_base64("images/git.png")
+    linkedin_base64 = image_to_base64("images/linkedin.png")
+    discord_base64 = image_to_base64("images/discord.png")
 
 
     # # Set page config
-    # st.set_page_config(page_title="FinRupee",page_icon = "images\\icon.jpg", layout="wide")
+    # st.set_page_config(page_title="FinRupee",page_icon = "images/icon.jpg", layout="wide")
 
 
     st.sidebar.title("FinRupee")
