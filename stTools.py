@@ -73,6 +73,7 @@ def preview_stock(
 
     # get price difference of close
     diff_price = stock_data.iloc[-1]['Close'] - stock_data.iloc[0]['Close']
+    diff_price = diff_price.item()
     if diff_price > 0.0:
         color = '#00fa119e'
     elif diff_price < 0.0:
