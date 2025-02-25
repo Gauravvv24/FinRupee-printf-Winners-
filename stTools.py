@@ -83,8 +83,8 @@ def preview_stock(
     stock_data['day(s) since buy'] = range(0, len(stock_data))
 
     create_metric_card(label=st.session_state[session_state_name],
-                       value=f"{stock_data.iloc[-1]['Close']: .2f}",
-                       delta=f"{diff_price: .2f}")
+                   value=f"{stock_data.iloc[-1]['Close'].values[0]: .2f}" if not stock_data.empty else "N/A",
+                   delta=f"{diff_price: .2f}")
 
     st.area_chart(stock_data, use_container_width=True,
                   height=250, width=250, color=color, x='day(s) since buy')
