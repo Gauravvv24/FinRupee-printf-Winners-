@@ -93,9 +93,9 @@ def stock():
         bb = data.copy()
         
         # Convert to 1D Series before assignment
-        bb['bb_h'] = bb_indicator.bollinger_hband().squeeze(axis=1)
-        bb['bb_l'] = bb_indicator.bollinger_lband().squeeze(axis=1)
-    
+        bb['bb_h'] = bb_indicator.bollinger_hband().iloc[:, 0]
+        bb['bb_l'] = bb_indicator.bollinger_lband().iloc[:, 0]
+            
         bb = bb[['Close', 'bb_h', 'bb_l']]
         macd = MACD(data['Close']).macd()
         rsi = RSIIndicator(data['Close']).rsi()
